@@ -1,0 +1,5 @@
+name: ProjectKorraMenu
+version: 2.0.0
+main: com.jedk1.projectkorra.menu.ProjectKorraMenu
+authors: ['jedk1']
+depend: ['ProjectKorra']
