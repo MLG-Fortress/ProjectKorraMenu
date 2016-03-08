@@ -8,6 +8,10 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Arrays;
 
+/**
+ * InventoryBuilder modified version of:
+ * https://bukkit.org/threads/icon-menu.108342/
+ */
 public class InventoryBuilder {
 
 	private String name;
@@ -16,6 +20,11 @@ public class InventoryBuilder {
     private String[] optionNames;
     private ItemStack[] optionIcons;
    
+    /**
+     * Create a new Inventory Builder.
+     * @param name
+     * @param size
+     */
     public InventoryBuilder(String name, int size) {
         this.name = name;
         this.size = size;
@@ -23,12 +32,24 @@ public class InventoryBuilder {
         this.optionIcons = new ItemStack[size];
     }
    
+    /**
+     * Set options (ItemStack icons) that appear in the GUI.
+     * @param position Slot to place the ItemStack.
+     * @param icon ItemStack to be displayed.
+     * @param name Name of the Icon.
+     * @param info Lore of the Icon.
+     * @return
+     */
     public InventoryBuilder setOption(int position, ItemStack icon, String name, String... info) {
         optionNames[position] = name;
         optionIcons[position] = setItemNameAndLore(icon, name, info);
         return this;
     }
    
+    /**
+     * Opens the GUI for the player.
+     * @param player Player to open the GUI for.
+     */
     public void open(Player player) {
         Inventory inventory = Bukkit.createInventory(player, size, name);
         for (int i = 0; i < optionIcons.length; i++) {
@@ -41,8 +62,8 @@ public class InventoryBuilder {
     
     private ItemStack setItemNameAndLore(ItemStack item, String name, String[] lore) {
         ItemMeta im = item.getItemMeta();
-            im.setDisplayName(name);
-            im.setLore(Arrays.asList(lore));
+        im.setDisplayName(name);
+        im.setLore(Arrays.asList(lore));
         item.setItemMeta(im);
         return item;
     }
