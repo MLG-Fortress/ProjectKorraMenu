@@ -16,9 +16,8 @@ import java.util.List;
 
 public class ElementsPage extends AbstractPage {
 
-	@Override
-	public String getName() {
-		return "Bind Your Abilities";
+	public ElementsPage() {
+		super("Bind Your Abilities");
 	}
 	
 	@Override
@@ -52,11 +51,11 @@ public class ElementsPage extends AbstractPage {
 	}
 
 	@Override
-	public boolean execute(Player player, ItemStack item, int position) {
+	public void execute(Player player, ItemStack item, int position) {
 		Page pageclone = new ElementsPage();
 		if (position == (pageclone.getSize() - 1)) {
 			player.closeInventory();
-			return true;
+			return;
 		}
 		Element element = Element.fromString(ChatColor.stripColor(item.getItemMeta().getDisplayName().split(" ")[0]));
 		Page page = new AbilityPage(element);
@@ -65,10 +64,24 @@ public class ElementsPage extends AbstractPage {
 		for (ItemStack i : page.getItems()) {
 			gui.setOption(pos++, i, i.getItemMeta().getDisplayName(), i.getItemMeta().getLore().toArray(new String[i.getItemMeta().getLore().size()]));
 		}
-		gui.setOption(page.getSize()-9, new ItemStack(Material.ARROW, 1), ChatColor.WHITE + "[<] Back", ChatColor.GRAY + "Return to the previous menu.");
+		List<String> lore = new ArrayList<String>();
+		lore.add(ChatColor.GRAY + "Previous Menu: " + player.getOpenInventory().getTitle());
+		lore.add(ChatColor.GRAY + "Return to the previous menu.");
+		gui.setOption(page.getSize()-9, new ItemStack(Material.ARROW, 1), ChatColor.WHITE + "[<] Back", lore.toArray(new String[lore.size()]));
 		gui.setOption(page.getSize()-2, new ItemStack(Material.PAPER, 1), ChatColor.WHITE + "[«] Previous Page", ChatColor.GRAY + "Jump to the previous page.");
 		gui.setOption(page.getSize()-1, new ItemStack(Material.PAPER, 1), ChatColor.WHITE + "[»] Next Page", ChatColor.GRAY + "Jump to the next page.");
+		setPreviousPage(player);
 		gui.open(player);
-		return true;
+	}
+
+	@Override
+	public void open(Player player, Object... object) {
+		InventoryBuilder gui = new InventoryBuilder(getName(), getSize());
+		int pos = 0;
+		for (ItemStack i : getItems()) {
+			gui.setOption(pos++, i, i.getItemMeta().getDisplayName(), i.getItemMeta().getLore().toArray(new String[i.getItemMeta().getLore().size()]));
+		}
+		gui.setOption((getSize() - 1), new ItemStack(Material.REDSTONE), ChatColor.WHITE + "[X] Close", ChatColor.GRAY + "Click here to exit the menu.");
+		gui.open(player);
 	}
 }

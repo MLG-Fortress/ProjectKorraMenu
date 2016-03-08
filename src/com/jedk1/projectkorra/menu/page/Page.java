@@ -11,5 +11,7 @@ public interface Page {
 	
 	public ItemStack[] getItems();
 	
-	public boolean execute(Player player, ItemStack item, int position);
+	public void execute(Player player, ItemStack item, int position);
+	
+	public void open(Player player, Object... object);
 }
