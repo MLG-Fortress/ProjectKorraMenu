@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.jedk1</groupId>
+    <artifactId>projectkorra.menu</artifactId>
+    <version>13.9.1</version>
+    <repositories>
+        <repository>
+            <id>spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+        </repository>
+        <repository>
+            <id>worldguard-repo</id>
+            <url>http://maven.sk89q.com/repo/</url>
+        </repository>
+        <repository>
+            <id>vault-repo</id>
+            <url>http://nexus.theyeticave.net/content/repositories/pub_releases</url>
+        </repository>
+    </repositories>
+    <build>
+    <!--Maintain existing structure (as much as possible)-->
+        <sourceDirectory>${project.basedir}/src/com/jedk1/projectkorra/menu</sourceDirectory>
+        <!--currently in same folder as source files...-->
+        <testSourceDirectory>${project.basedir}/tests/java</testSourceDirectory>
+        <finalName>ProjectKorraMenu</finalName>
+        <resources>
+            <resource>
+            <!-- Use plugin.yml in src directory-->
+            <!-- This can also automatically update plugin.yml version from pom, if you use ${project.version} as version number-->
+                <directory>${basedir}/src</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>plugin.yml</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
+    <dependencies>
+        <!--Bukkit API-->
+        <dependency>
+                 <groupId>org.bukkit</groupId>
+                 <artifactId>bukkit</artifactId>
+                 <version>1.9-R0.1-SNAPSHOT</version>
+                 <scope>provided</scope>
+        </dependency>
+         <!--Worldguard dependency-->
+        <dependency>
+                <groupId>com.sk89q</groupId>
+                <artifactId>worldguard</artifactId>
+                <version>6.1.1-SNAPSHOT</version>
+        </dependency>
+         <!--Vault dependency-->
+        <dependency>
+                <groupId>net.milkbowl.vault</groupId>
+                <artifactId>Vault</artifactId>
+                <version>1.5.6</version>
+        </dependency>
+        <!--Google stuff-->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>19.0</version>
+        </dependency>
+        <!--json stuff-->
+        <dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.projectkorra</groupId>
+            <artifactId>projectkorra</artifactId>
+            <version>1.8.0 BETA 8</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/ProjectKorra.jar</systemPath>
+        </dependency>
+    </dependencies>
+
+</project>
