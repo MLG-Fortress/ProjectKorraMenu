@@ -6,19 +6,15 @@
 
     <groupId>com.jedk1</groupId>
     <artifactId>projectkorra.menu</artifactId>
-    <version>13.9.1</version>
+    <version>0</version>
+    <properties>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+    </properties>
     <repositories>
         <repository>
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
-        </repository>
-        <repository>
-            <id>worldguard-repo</id>
-            <url>http://maven.sk89q.com/repo/</url>
-        </repository>
-        <repository>
-            <id>vault-repo</id>
-            <url>http://nexus.theyeticave.net/content/repositories/pub_releases</url>
         </repository>
     </repositories>
     <build>
@@ -46,30 +42,6 @@
                  <artifactId>bukkit</artifactId>
                  <version>1.9-R0.1-SNAPSHOT</version>
                  <scope>provided</scope>
-        </dependency>
-         <!--Worldguard dependency-->
-        <dependency>
-                <groupId>com.sk89q</groupId>
-                <artifactId>worldguard</artifactId>
-                <version>6.1.1-SNAPSHOT</version>
-        </dependency>
-         <!--Vault dependency-->
-        <dependency>
-                <groupId>net.milkbowl.vault</groupId>
-                <artifactId>Vault</artifactId>
-                <version>1.5.6</version>
-        </dependency>
-        <!--Google stuff-->
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>19.0</version>
-        </dependency>
-        <!--json stuff-->
-        <dependency>
-            <groupId>com.googlecode.json-simple</groupId>
-            <artifactId>json-simple</artifactId>
-            <version>1.1.1</version>
         </dependency>
         <dependency>
             <groupId>com.projectkorra</groupId>
